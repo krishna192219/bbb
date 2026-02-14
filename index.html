@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:center;
+    overflow:hidden;
+
+    background-image: url("assets/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100vh;
+}
+
+/* dark overlay for readability */
+#overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    pointer-events:none;
+    transition:background 1.5s ease;
+    z-index:0;
+}
+
+
+.container{
+    margin-top:60px;
+    padding:0 20px;
+}
+
+h1{
+    font-size:36px;
+    color:#B11226;
+    text-shadow:0 0 10px rgba(0,0,0,0.6);
+}
+
+/* photo card */
+#photo{
+    width:260px;
+    height:260px;
+    border-radius:22px;
+    object-fit:cover;
+    margin:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    border:4px solid white;
+}
+
+/* button area */
+.btns{
+    position:absolute;
+    top:88%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    gap:60px;
+    align-items:center;
+    justify-content:center;
+}
+
+/* general button look */
+button{
+    border:none;
+    border-radius:60px;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition: all 0.25s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* YES button (big + beating) */
+#yes{
+    padding:22px 70px;
+    font-size:26px;
+    color:white;
+    background: linear-gradient(135deg,#ff6a88,#ff99ac);
+    animation: heartbeat 1.2s infinite;
+}
+
+#yes:hover{
+    transform:scale(1.15);
+    box-shadow:0 0 30px #ff6a88;
+}
+
+/* NO button floats independently */
+#no{
+    position:fixed;
+    padding:14px 32px;
+    font-size:18px;
+    background:linear-gradient(135deg,#7a7a7a,#9e9e9e);
+    color:white;
+}
+
+/* heartbeat animation */
+@keyframes heartbeat{
+    0%{ transform:scale(1);}
+    25%{ transform:scale(1.15);}
+    40%{ transform:scale(1);}
+    60%{ transform:scale(1.18);}
+    100%{ transform:scale(1);}
+}
+
+#loveMessage{
+    display:none;
+    font-size:56px;
+    font-weight:700;
+    margin-top:25px;
+    padding:28px 35px;
+    max-width:85%;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.25;
+
+    color:#fff0f5;
+
+    opacity:0;
+    transform:translateY(40px);
+
+    /* glass cinematic box */
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(8px);
+    border-radius:22px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.9),
+        0 0 25px rgba(255,120,150,0.9),
+        0 0 45px rgba(255,20,90,0.8);
+}
+@media (max-width:600px){
+    #loveMessage{
+        font-size:32px;
+        padding:18px;
+    }
+}
+
+
+@keyframes romanticReveal{
+    0%{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+#photo{
+    filter: brightness(1.15) contrast(1.05);
+    transition: filter 1.5s ease;
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+    <div id="overlay"></div>
+
+<div class="container">
+    <h1>
+    IN THE MOST DREAMIEST WAY POSSIBLE IN THE MOST LOVING WAY POSSIBLE WITH MY WHOLLEEE HEART IN MY HANDS JUST FOR MY SWEETAAA MY JANEMAANN MY RASMALAII THE BEST THE QUEEN OF MY HEART THE SPICE OF MY LIFE THE MOST TALENTED THE MOST BEAUTIFUL MY MISSES IMPERFECTLY_PERFECT(just for me) CAN YOU BE MY VALENTINE? FOR ALL THE JANAMS I COULD GET?
+    </h1>
+
+```
+<img id="photo" src="images/1.jpg">
+
+<div id="loveMessage">
+    YAAYAYAYAYAYAYA ❤️<br>
+   YOU ARE THE BANE OF MY EXISTENCE AND THE OBJECT OF ALL MY DESIRES
+</div>
+```
+
+</div>
+
+<div class="btns">
+    <button id="yes">YES 💖</button>
+</div>
+
+<button id="no">NO 😭</button>
+
+<script>
+
+/* slideshow */
+const photos = [
+"images/1.jpg",
+"images/2.jpg",
+"images/3.jpg",
+"images/4.jpg",
+"images/5.jpg",
+"images/6.jpg",
+"images/7.jpg",
+"images/8.jpg",
+];
+
+let i = 0;
+let slideShowStarted = false;
+
+function startSlideshow(){
+
+    if(slideShowStarted) return;
+    slideShowStarted = true;
+
+    setInterval(()=>{
+        i = (i+1) % photos.length;
+        document.getElementById("photo").src = photos[i];
+    },2000);
+}
+
+
+/* yes click */
+document.getElementById("yes").onclick=function(){
+
+    const msg = document.getElementById("loveMessage");
+
+    msg.style.display="block";
+    startSlideshow();
+    setTimeout(()=>{
+        msg.style.animation="romanticReveal 1.6s ease forwards";
+    },50);
+
+    document.querySelector("h1").innerHTML=
+"I LOVEEE YOU THE MOSTTTTTT RASMALAI💋💋💋💋";
+
+    document.getElementById("yes").style.display="none";
+    document.getElementById("no").style.display="none";
+
+ 
+    document.getElementById("overlay").style.background="rgba(0,0,0,0.00)";
+    document.getElementById("bgMusic").play();
+    const music=document.getElementById("bgMusic");
+    music.volume=0.5;
+
+
+};
+
+
+/* no button escape */
+const noBtn=document.getElementById("no");
+
+/* initial placement */
+function placeNo(){
+    noBtn.style.left=(window.innerWidth/2+180)+"px";
+    noBtn.style.top=(window.innerHeight*0.75)+"px";
+}
+placeNo();
+
+/* run away on hover */
+noBtn.addEventListener("mouseenter",()=>{
+    const x=Math.random()*(window.innerWidth-120);
+    const y=Math.random()*(window.innerHeight-80);
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+});
+
+</script>
+
+<audio id="bgMusic" loop>
+    <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
